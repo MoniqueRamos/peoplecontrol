@@ -18,7 +18,7 @@ public class Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Type(type = "uuid-char")
     private UUID id;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
