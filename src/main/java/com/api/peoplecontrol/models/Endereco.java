@@ -1,5 +1,9 @@
 package com.api.peoplecontrol.models;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
@@ -10,12 +14,13 @@ public class Endereco implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "UUID")
+    @Type(type = "uuid-char")
     private UUID id_endereco;
     @Column(nullable = false)
     private String logradouro;
-    @Column(nullable = false)
-    private int cep;
+    @Column(nullable = false, length = 8)
+    private String cep;
     @Column(nullable = false)
     private int numero;
     @Column(nullable = false)
@@ -23,6 +28,7 @@ public class Endereco implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "pessoa_id")
+    @JsonIgnore
     private Pessoa pessoa;
 
     public UUID getId_endereco() {
@@ -41,11 +47,11 @@ public class Endereco implements Serializable {
         this.logradouro = logradouro;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

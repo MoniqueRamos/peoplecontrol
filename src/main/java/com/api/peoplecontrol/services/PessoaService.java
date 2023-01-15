@@ -5,6 +5,7 @@ import com.api.peoplecontrol.repositories.PessoaRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class PessoaService {
@@ -17,5 +18,9 @@ public class PessoaService {
     @Transactional
     public Pessoa save(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
+    }
+
+    public List<Pessoa> findAll() {
+        return pessoaRepository.findAll();
     }
 }

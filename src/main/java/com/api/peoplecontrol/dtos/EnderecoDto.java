@@ -1,21 +1,20 @@
 package com.api.peoplecontrol.dtos;
 
-import com.api.peoplecontrol.models.Pessoa;
 
 import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
 public class EnderecoDto {
 
     @NotBlank
     private String logradouro;
-    @NotBlank
-    private int cep;
-    @NotBlank
+    private String cep;
     private int numero;
     @NotBlank
     private String cidade;
-    @NotBlank
-    private Pessoa pessoa;
+
+    private UUID pessoaId;
+
 
     public String getLogradouro() {
         return logradouro;
@@ -25,11 +24,11 @@ public class EnderecoDto {
         this.logradouro = logradouro;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -49,11 +48,11 @@ public class EnderecoDto {
         this.cidade = cidade;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public UUID getPessoaId() {
+        return pessoaId;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setPessoaId(UUID pessoaId) {
+        this.pessoaId = pessoaId;
     }
 }

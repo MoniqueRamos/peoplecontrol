@@ -1,5 +1,6 @@
 package com.api.peoplecontrol.models;
 
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,7 +16,8 @@ public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id_pessoa;
+    @Type(type = "uuid-char")
+    private UUID id;
     @Column(nullable = false, unique = true)
     private String nome;
     @Column(nullable = false)
@@ -25,12 +27,12 @@ public class Pessoa implements Serializable {
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private List<Endereco> endereco;
 
-    public UUID getId_pessoa() {
-        return id_pessoa;
+    public UUID getId() {
+        return id;
     }
 
-    public void setId_pessoa(UUID id_pessoa) {
-        this.id_pessoa = id_pessoa;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getNome() {

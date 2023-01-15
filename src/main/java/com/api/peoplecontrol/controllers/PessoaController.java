@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -26,5 +27,9 @@ public class PessoaController {
         var pessoa = new Pessoa();
         BeanUtils.copyProperties(pessoaDto, pessoa);
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.save(pessoa));
+    }
+
+    public ResponseEntity<List<Pessoa>> getAllPessoa(){
+        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findAll());
     }
 }
