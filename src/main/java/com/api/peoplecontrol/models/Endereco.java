@@ -26,6 +26,9 @@ public class Endereco implements Serializable {
     @Column(nullable = false)
     private String cidade;
 
+    @Column(nullable = false)
+    private Boolean principal= false;
+
     @ManyToOne
     @JoinColumn(name = "pessoa_id")
     @JsonIgnore
@@ -77,5 +80,13 @@ public class Endereco implements Serializable {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Boolean getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Boolean principal) {
+        this.principal = principal;
     }
 }

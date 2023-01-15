@@ -13,7 +13,13 @@ public class EnderecoDto {
     @NotBlank
     private String cidade;
 
+    private Boolean principal;
+
     private UUID pessoaId;
+
+    public EnderecoDto() {
+        principal = false;
+    }
 
 
     public String getLogradouro() {
@@ -54,5 +60,13 @@ public class EnderecoDto {
 
     public void setPessoaId(UUID pessoaId) {
         this.pessoaId = pessoaId;
+    }
+
+    public Boolean getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Boolean principal) {
+        this.principal = principal;
     }
 }
