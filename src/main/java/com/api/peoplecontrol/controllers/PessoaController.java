@@ -32,6 +32,7 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.save(pessoa));
     }
 
+    @GetMapping
     public ResponseEntity<List<Pessoa>> getAllPessoa(){
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findAll());
     }
