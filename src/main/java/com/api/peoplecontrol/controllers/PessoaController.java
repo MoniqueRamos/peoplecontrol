@@ -3,6 +3,7 @@ package com.api.peoplecontrol.controllers;
 import com.api.peoplecontrol.dtos.PessoaDto;
 import com.api.peoplecontrol.models.Endereco;
 import com.api.peoplecontrol.models.Pessoa;
+import com.api.peoplecontrol.services.EnderecoService;
 import com.api.peoplecontrol.services.PessoaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class PessoaController {
 
     final PessoaService pessoaService;
+    EnderecoService enderecoService;
 
     public PessoaController(PessoaService pessoaService) {
 
@@ -35,6 +38,11 @@ public class PessoaController {
     @GetMapping
     public ResponseEntity<List<Pessoa>> getAllPessoa(){
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findAll());
+    }
+
+    @GetMapping("/{pessoaId}/enderecos")
+    public ResponseEntity<Object> findEnderecosByPessoaId(@PathVariable(value="pessoaId") UUID pessoaId){
+        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findEnderecosByPessoaId(pessoaId));
     }
 
     @PutMapping("/{id}")
