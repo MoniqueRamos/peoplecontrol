@@ -2,6 +2,7 @@ package com.api.peoplecontrol.controllers;
 
 import com.api.peoplecontrol.dtos.EnderecoDto;
 import com.api.peoplecontrol.models.Endereco;
+import com.api.peoplecontrol.repositories.EnderecoRepository;
 import com.api.peoplecontrol.services.EnderecoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,7 @@ import javax.validation.Valid;
 public class EnderecoController {
 
     final EnderecoService enderecoService;
-
-    public EnderecoController(EnderecoService enderecoService) {
+    public EnderecoController(EnderecoService enderecoService, EnderecoRepository enderecoRepository) {
         this.enderecoService = enderecoService;
     }
 

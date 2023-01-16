@@ -24,7 +24,6 @@ public class PessoaController {
     EnderecoService enderecoService;
 
     public PessoaController(PessoaService pessoaService) {
-
         this.pessoaService = pessoaService;
     }
 
@@ -36,12 +35,18 @@ public class PessoaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Pessoa>> getAllPessoa(){
+    public ResponseEntity<Object> getAllPessoa(){
+        if(pessoaService.findAll().isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não há registros de pessoas");
+        }
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findAll());
     }
 
     @GetMapping("/{pessoaId}/enderecos")
     public ResponseEntity<Object> findEnderecosByPessoaId(@PathVariable(value="pessoaId") UUID pessoaId){
+        if(pessoaService.findEnderecosByPessoaId(pessoaId).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Essa pessoa não possui endereços");
+        }
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findEnderecosByPessoaId(pessoaId));
     }
 
@@ -54,8 +59,6 @@ public class PessoaController {
         var pessoa = pessoaOptional.get();
         pessoa.setNome(pessoaDto.getNome());
         pessoa.setDataDeNascimento(pessoaDto.getDataDeNascimento());
-
-
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.save(pessoa));
     }
 }

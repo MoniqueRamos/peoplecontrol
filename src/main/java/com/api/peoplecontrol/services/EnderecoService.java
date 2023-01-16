@@ -35,7 +35,7 @@ public class EnderecoService {
                 for(Endereco end:enderecos){
                     end.setPrincipal(false);
                 }
-        }
+            }
         }
         return enderecoRepository.save(endereco);
     }
